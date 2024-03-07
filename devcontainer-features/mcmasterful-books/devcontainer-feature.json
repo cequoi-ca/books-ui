@@ -1,0 +1,17 @@
+{
+    "name": "mcmasterful-books",
+    "id": "mcmasterful-books",
+    "version": "0.1.0",
+    "description": "A feature installing the `mcmasterful-books` server for McMaster's BVD-103 class.",
+    "options": {
+        "assignment":{
+            "type": "string",
+            "description": "The current assignment",
+            "enum": ["assignment-1", "assignment-2", "assignment-3", "assignment-4", "assignment-5", "assignment-6", "assignment-7", "assignment-8"],
+            "default": "assignment-1"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers-contrib/features/tsx"
+    ]
+}

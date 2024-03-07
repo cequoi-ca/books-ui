@@ -1,5 +1,5 @@
 import { For, createEffect, createResource, createSignal } from 'solid-js'
-import { Book, listBooks } from 'adapter'
+import adapter, { Book } from 'adapter'
 
 function App() {
   let [filters, setFilters] = createSignal([
@@ -11,7 +11,7 @@ function App() {
   let [books] = createResource(filters, async (available_filters) => {
     let active_filters = available_filters.filter(f => f.active, ).map(f => f.filter);
 
-    return await listBooks(active_filters);
+    return adapter.assignment == "assignment-1" ? await adapter.listBooks(active_filters) : []; 
   })
 
   return (

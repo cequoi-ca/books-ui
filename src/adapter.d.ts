@@ -6,5 +6,14 @@ declare module "adapter" {
         image: string,
     };
 
-    export function listBooks(filters?: Array<{from?: number, to?: number}>) : Promise<Book[]>;
+    type default_export = {
+        assignment: "assignment-1",
+        listBooks: (filters?: Array<{from?: number, to?: number}>) => Promise<Book[]>
+    } | {
+        assignment: "assignment-2"
+    };
+
+    const ex: default_export;
+
+    export default ex;
 }

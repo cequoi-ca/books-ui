@@ -1,8 +1,10 @@
-export interface Book {
-    name: string,
-    description: string,
-    price: number,
-    image: string,
-};
+declare module "adapter" {
+    export interface Book {
+        name: string,
+        description: string,
+        price: number,
+        image: string,
+    };
 
-export async function listBooks(filters?: Array<{from?: number, to?: number}>) : Promise<Book[]>;
+    export function listBooks(filters?: Array<{from?: number, to?: number}>) : Promise<Book[]>;
+}

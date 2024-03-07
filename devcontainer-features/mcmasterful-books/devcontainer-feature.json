@@ -1,7 +1,7 @@
 {
     "name": "mcmasterful-books",
     "id": "mcmasterful-books",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A feature installing the `mcmasterful-books` server for McMaster's BVD-103 class.",
     "options": {
         "assignment":{

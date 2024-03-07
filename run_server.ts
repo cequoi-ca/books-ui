@@ -24,7 +24,11 @@ export async function run_server() {
       allow: [adapter]
     }
   },
-  publicDir: adapter,
+    resolve: {
+      alias: {
+        adapter
+      }
+    }
     });
     await server.listen(9080);
     server.printUrls();

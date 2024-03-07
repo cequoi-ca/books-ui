@@ -1,5 +1,5 @@
 import { For, createEffect, createResource, createSignal } from 'solid-js'
-import { Book, listBooks } from './back-end-connection'
+import { Book, listBooks } from 'adapter'
 
 function App() {
   let [filters, setFilters] = createSignal([

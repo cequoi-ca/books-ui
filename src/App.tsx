@@ -37,7 +37,7 @@ function App() {
               <img src={item.image} class="aspect-auto"/>
             </div>
             <h2 class=" col-start-2 col-span-1 row-start-1">{item.name}</h2>
-            <h3 class="col-span-1 row-start-1 col-start-3">{item.price}</h3>
+            <h3 class="col-span-1 row-start-1 col-start-3"> by {item.author} {item.price}</h3>
             <div class="col-span-2">{item.description}</div>
           </li>
           }

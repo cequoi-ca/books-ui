@@ -11,6 +11,6 @@ cd /bvd-103-mcmasterful-books
 
 npm install
 
-echo "MCMASTERFUL_ASSIGNMENT=\"$assignment\"" >> /etc/environment
-
 npm install -g ./
+
+sudo chown -R node:node /bvd-103-mcmasterful-books/

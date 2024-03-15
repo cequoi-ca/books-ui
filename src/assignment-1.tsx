@@ -32,14 +32,14 @@ export default function assignment(adapter: typeof assignment_1) {
       <ul class="grid col-start-2 p-10 grid-cols-[auto_1fr_auto] grid-rows-[repeat(auto-fit,_minmax(10px,_auto)_minmax(10px,_auto)_minmax(10px,_1fr))] gap-y-0 gap-x-3">
         <For each={books()}>
           { (item) => 
-          <li x-book={item.name} class="book grid grid-cols-subgrid grid-rows-subgrid col-span-3 row-span-2">
-            <div class="col-start-1 row-span-2 w-20 h-32">
+          <li x-book={item.name} class="book grid grid-cols-subgrid grid-rows-subgrid col-span-3 row-span-3">
+            <div class="col-start-1 row-span-3 w-20 h-32">
               <img src={item.image} class="aspect-auto"/>
             </div>
             <h2 class=" col-start-2 col-span-1 row-start-1">{item.name}</h2>
             <h3 class="col-span-1 row-start-1 col-start-3">{item.price}</h3>
             <h4 class="col-span-1 col-start-2 row-start-2">by {item.author}</h4>
-            <div class="col-span-2">{item.description}</div>
+            <div class="col-span-2 col-start-2 row-start-3">{item.description}</div>
           </li>
           }
         </For>

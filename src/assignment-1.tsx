@@ -1,7 +1,7 @@
 import { For, createEffect, createResource, createSignal } from 'solid-js'
-import { type assignment_1  } from "adapter";
+import assignment_1 from 'assignment_1';
 
-export default function assignment_1(adapter: assignment_1) {
+export default function assignment(adapter: typeof assignment_1) {
   let [filters, setFilters] = createSignal([
     { label: "Under 10$", filter: { to: 10}, active: false},
     { label: "10$-20$", filter: {from: 10, to: 20}, active: false},
@@ -29,7 +29,7 @@ export default function assignment_1(adapter: assignment_1) {
           setFilters(new_filters);
         }}/><span class="pl-2">{item.label}</span></span>}</For>
       </div>
-      <ul class="grid col-start-2 p-10 grid-cols-[auto_1fr_auto] grid-rows-[repeat(1fr,_1fr)] gap-3">
+      <ul class="grid col-start-2 p-10 grid-cols-[auto_1fr_auto] grid-rows-[repeat(auto-fit,_minmax(10px,_auto)_minmax(10px,_auto)_minmax(10px,_1fr))] gap-y-0 gap-x-3">
         <For each={books()}>
           { (item) => 
           <li x-book={item.name} class="book grid grid-cols-subgrid grid-rows-subgrid col-span-3 row-span-2">
@@ -37,7 +37,8 @@ export default function assignment_1(adapter: assignment_1) {
               <img src={item.image} class="aspect-auto"/>
             </div>
             <h2 class=" col-start-2 col-span-1 row-start-1">{item.name}</h2>
-            <h3 class="col-span-1 row-start-1 col-start-3"> by {item.author} {item.price}</h3>
+            <h3 class="col-span-1 row-start-1 col-start-3">{item.price}</h3>
+            <h4 class="col-span-1 col-start-2 row-start-2">by {item.author}</h4>
             <div class="col-span-2">{item.description}</div>
           </li>
           }

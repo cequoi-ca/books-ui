@@ -22,7 +22,8 @@ export async function run_server() {
     fs: {
       strict: false,
       allow: [adapter]
-    }
+    },
+    host: true
   },
     resolve: {
       alias: {

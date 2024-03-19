@@ -21,7 +21,7 @@ export default function assignment(adapter: typeof assignment_1) {
       </header>
       <div class="flex flex-row justify-center items-center col-start-2 p-10 gap-5">
         <span>Filters:</span>
-        <For each={filters()}>{(item, index) => <span><input type="checkbox" checked={item.active} onchange={(event) => {
+        <For each={filters()}>{(item, index) => <span><input x-filter-from={item.filter.from} x-filter-to={item.filter.to} type="checkbox" checked={item.active} onchange={(event) => {
           let new_value = event.target.checked;
           let new_filters = [...filters()];
           let i = index();

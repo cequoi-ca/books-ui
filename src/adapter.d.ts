@@ -18,6 +18,8 @@ declare module "assignment_1" {
 }
 
 declare module "assignment_2" {
+    export type BookID = string;
+    
     export interface Book {
         id?: BookID,
         name: string,

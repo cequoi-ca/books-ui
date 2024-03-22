@@ -1,14 +1,14 @@
-import assignment_1 from "assignment_1";
-import assignment_2, { Book } from "assignment_2";
-import { For, Resource, createResource } from "solid-js";
+import { Book, Filter } from "assignment_3";
+import { Accessor, For, Resource, createResource } from "solid-js";
 
 interface Props {
-    filters: Resource<Array<{from?: number, to?: number}>>,
-    listBooks: (filters: Array<{from?: number, to?: number}>) => Promise<Book[]>
+    filters: Accessor<Filter[]> | Resource<Filter[]>,
+    listBooks: (filters: Array<Filter>) => Promise<Book[]>
 }
 
 export default function InitialBookList({ filters, listBooks}: Props) {
     let [books] = createResource(filters, async (available_filters) => {
+        console.log("Filters Updated", available_filters);
         return await listBooks(available_filters)
     });
 

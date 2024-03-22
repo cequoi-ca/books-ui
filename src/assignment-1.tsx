@@ -19,7 +19,7 @@ export default function assignment(adapter: typeof assignment_1) {
   return (
     <PageWrapper>
       <InitialFilters filters={filters} setFilters={setFilters} />
-      <InitialBookList filters={active_filters} listBooks={adapter.listBooks}/>
+      <InitialBookList filters={active_filters() ??[]} listBooks={adapter.listBooks}/>
     </PageWrapper>
   )
 }

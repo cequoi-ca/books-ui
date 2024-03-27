@@ -8,6 +8,8 @@ import InitialMutableBookList from './components/initial_mutable_book_list';
 import assignment_3, { Book, Filter } from 'assignment_3';
 import RobustFilters from './components/robust_filters';
 
+const routes = {"Home": "/", "Edit Book List": "/edit_list"};
+
 export default function assignment(adapter: typeof assignment_3) {
   return (
     <Router>
@@ -21,7 +23,7 @@ function main(adapter: typeof assignment_3) {
   let [filters, setFilters] = createSignal<Filter[]>([]);
 
   return (
-    <PageWrapper>
+    <PageWrapper routes={routes}>
       <RobustFilters filters={filters} setFilters={(filters) => {
         console.log("Setting filters", filters);
         setFilters(filters)
@@ -33,7 +35,7 @@ function main(adapter: typeof assignment_3) {
 
 
 function edit_list(adapter: typeof assignment_3) {return (
-  <PageWrapper title="Edit Book List">
+  <PageWrapper title="Edit Book List" routes={routes}>
     <InitialMutableBookList listBooks={adapter.listBooks} createOrUpdateBook={adapter.createOrUpdateBook} removeBook={adapter.removeBook} />
   </PageWrapper>
 )

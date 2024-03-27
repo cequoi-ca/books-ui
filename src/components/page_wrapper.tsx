@@ -3,12 +3,19 @@ import { JSXElement } from 'solid-js';
 
 interface Props {
     children: JSXElement,
-    title?: string
+    title?: string,
+    routes?: Record<string, string>
 }
 
 export default function PageWrapper(props: Props) {
     let assignment : string = adapter.assignment;
     let title : string = props.title ?? "";
+    let routes : Record<string, string>= props.routes ?? {};
+
+    let route_elements = Object.keys(routes).map((key) => {
+        let route = routes[key];
+        return (<a href={route} class="text-md text-blue-200 hover:text-blue-400">{key}</a>);
+    });
 
     return (
         <div class="grid grid-cols-[1fr_minmax(900px,_3fr)_1fr] grid-rows-[auto_auto_auto_min-content_min-content_1fr_auto] min-h-[100dvh]">
@@ -16,6 +23,9 @@ export default function PageWrapper(props: Props) {
             <h2 class="text-md col-start-2">{assignment}</h2>
             <h1 class="text-xl col-start-2 row-start-2">McMasterful Books</h1>
             <h2 class="text-lg col-start-2 row-start-3">{title}</h2>
+            <div class="flex flex-col col-start-1 row-start-1 row-span-3">
+                {route_elements}
+            </div>
           </header>
 
           {props.children}

@@ -7,6 +7,8 @@ import InitialBookList from './components/initial_book_list';
 import InitialFilters, { NamedFilters } from './components/initial_filters';
 import InitialMutableBookList from './components/initial_mutable_book_list';
 
+const routes = {"Home": "/", "Edit Book List": "/edit_list"};
+
 export default function assignment(adapter: typeof assignment_2) {
   return (
     <Router>
@@ -29,7 +31,7 @@ function main(adapter: typeof assignment_2) {
   })
 
   return (
-    <PageWrapper>
+    <PageWrapper routes={routes}>
       <InitialFilters filters={filters} setFilters={setFilters} />
       <InitialBookList filters={active_filters} listBooks={adapter.listBooks}/>
     </PageWrapper>
@@ -38,7 +40,7 @@ function main(adapter: typeof assignment_2) {
 
 
 function edit_list(adapter: typeof assignment_2) {return (
-  <PageWrapper title="Edit Book List">
+  <PageWrapper title="Edit Book List" routes={routes}>
     <InitialMutableBookList listBooks={adapter.listBooks} createOrUpdateBook={adapter.createOrUpdateBook} removeBook={adapter.removeBook} />
   </PageWrapper>
 )

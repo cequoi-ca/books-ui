@@ -34,7 +34,7 @@ function main(adapter: typeof assignment_3) {
 }
 
 
-function edit_list(adapter: typeof assignment_3) {return (
+export function edit_list(adapter: typeof assignment_3) {return (
   <PageWrapper title="Edit Book List" routes={routes}>
     <InitialMutableBookList listBooks={adapter.listBooks} createOrUpdateBook={adapter.createOrUpdateBook} removeBook={adapter.removeBook} />
   </PageWrapper>

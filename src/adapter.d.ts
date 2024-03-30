@@ -118,7 +118,7 @@ declare module "assignment_4" {
 
     export function fulfilOrder(order: OrderId, booksFulfilled: Array<{ book: BookID, shelf: ShelfId, numberOfBooks: number }>): Promise<void>;
 
-    export function listOrders(): Promise<Array<{ orderId: OrderId, books: BookID[] }>>;
+    export function listOrders(): Promise<Array<{ orderId: OrderId, books: Record<BookID, number> }>>;
 
     export const assignment = "assignment-4";
 

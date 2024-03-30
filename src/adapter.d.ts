@@ -112,8 +112,6 @@ declare module "assignment_4" {
 
     export function placeBooksOnShelf(bookId: BookID, numberOfBooks: number, shelf: ShelfId): Promise<void>;
 
-    export function bookAvailability(bookId: BookID): Promise<number>;
-
     export function orderBooks(order: BookID[]): Promise<{ orderId: OrderId } | { missingBooks: Array<{ book: BookID, numberAvailable: number, numberRequested: number }> }>;
 
     export function findBookOnShelf(book: BookID):  Promise<Array<{ shelf: ShelfId, count: number }>> ;

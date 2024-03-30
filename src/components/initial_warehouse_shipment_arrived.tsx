@@ -14,10 +14,10 @@ export default function InitialWarehouseShipmentArrived({ listBooks, placeBooksO
     let [books] = createResource(book_filter, async (filter) => {
         let filters : Filter[] = [
             {
-                name: filter
+                name: filter.replace(/\s/g, "\s")
             },
             {
-                author: filter
+                author: filter.replace(/\s/g, "\s")
             }
         ];
         return await listBooks(filters)
@@ -46,7 +46,6 @@ export default function InitialWarehouseShipmentArrived({ listBooks, placeBooksO
                         {(item) => 
                         <button class="p-2 hover:brightness-50 grid grid-col-span-1 grid-row-span-2" classList={{ "bg-blue-400 text-white": selectedBook() == item.id, "bg-blue-100 text-black": selectedBook() !== item.id}} onClick={() => {
                             selectBook(item.id || false);
-                            setBookFilter(item.name + " by " + item.author);
                         }}><div>{item.name}</div><div class="text-sm">{item.author}</div></button>
                         }
                     </For></div>

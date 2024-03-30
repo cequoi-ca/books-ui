@@ -29,6 +29,7 @@ function main(adapter: typeof assignment_4) {
   let [filters, setFilters] = createSignal<Filter[]>([]);  
   
   let [currentOrder, setCurrentOrder] = createSignal<Record<BookID, number>>({});
+  let [orderStatus, setOrderStatus] = createSignal<boolean | string>(false);
 
   const addToOrder = (id: BookID) => {
     let current = currentOrder();
@@ -40,6 +41,7 @@ function main(adapter: typeof assignment_4) {
     nextOrder[id] = (nextOrder[id] || 0) + 1;
     console.log("New Order", nextOrder)
     setCurrentOrder(nextOrder);
+    setOrderStatus(false);
   }
   const removeFromOrder = (id: BookID) => {
     let current = currentOrder();
@@ -54,6 +56,7 @@ function main(adapter: typeof assignment_4) {
     }
     console.log("New Order", nextOrder)
     setCurrentOrder(nextOrder);}
+
   const submitOrder = async () => {
     let current = currentOrder();
     let order = Object.keys(current).flatMap((key) => {
@@ -64,7 +67,14 @@ function main(adapter: typeof assignment_4) {
       }
       return result
     });
-    await adapter.orderBooks(order);
+    try {
+      await adapter.orderBooks(order);
+      setCurrentOrder({});
+      setOrderStatus(true);
+    } catch (e) {
+      console.error(e);
+      setOrderStatus(`Error with order: ${e}`);
+    }
   }
 
   return (
@@ -74,7 +84,7 @@ function main(adapter: typeof assignment_4) {
         setFilters(filters)
       }} />
       <InitialBookList filters={filters} listBooks={adapter.listBooks} addToOrder={addToOrder}/>
-      <InitialShoppingCart lookupBookById={adapter.lookupBookById} addToOrder={addToOrder} removeFromOrder={removeFromOrder} currentOrder={currentOrder} submitOrder={submitOrder}/>
+      <InitialShoppingCart orderStatus={orderStatus} lookupBookById={adapter.lookupBookById} addToOrder={addToOrder} removeFromOrder={removeFromOrder} currentOrder={currentOrder} submitOrder={submitOrder}/>
     </PageWrapper>
   )
 }

@@ -9,9 +9,10 @@ interface Props {
     removeFromOrder: (book: BookID) => void,
     currentOrder: Accessor<Record<BookID, number>>,
     submitOrder: () => void,
+    orderStatus: Accessor<boolean | string>
 }
 
-export default function InitialShoppingCart({ lookupBookById, removeFromOrder, currentOrder, addToOrder, submitOrder}: Props) {
+export default function InitialShoppingCart({ lookupBookById, removeFromOrder, currentOrder, addToOrder, submitOrder, orderStatus}: Props) {
     let [books] = createResource(currentOrder, async (currentOrder, resource_info: ResourceFetcherInfo<Record<BookID, Book & { order_count: number }>, unknown>) => {
         let previous_value = resource_info.value || {};
         let new_value : Record<BookID, Book & { order_count: number }> = {};
@@ -43,6 +44,13 @@ export default function InitialShoppingCart({ lookupBookById, removeFromOrder, c
     return (
         <div class="flex flex-col justify-start items-start col-start-3 gap-5 row-start-4 row-span-2">
             <h3 class="font-bold">Order</h3>
+            {
+                orderStatus() ? (
+                    typeof orderStatus() === 'string' ?
+                    (<span class="text-red-300">{orderStatus()}</span>) :
+                    (<span class="text-green-300">Order Placed</span>)
+                ) : ""
+            }
         <ul class="flex flex-col justify-start items-start gap-5">
             <Key each={bookArray()} by="id">
                 { (item, index) => 

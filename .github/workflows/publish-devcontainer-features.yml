@@ -50,7 +50,7 @@ jobs:
             context: .
             file: ./mcmasterful.Dockerfile
             push: true
-            tags: McMastercce/bvd-103-mcmasterful-books
+            tags:   ghcr.io/McMastercce/bvd-103-mcmasterful-books
             labels: latest,${{ github.run_id }}
 
 

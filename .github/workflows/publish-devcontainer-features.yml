@@ -50,5 +50,7 @@ jobs:
             context: .
             file: ./mcmasterful.Dockerfile
             push: true
+            tags: ${{ github.run_id }}
+            labels: latest
 
 

@@ -4,7 +4,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-docker
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
     publish-dev-container:
@@ -48,7 +48,7 @@ jobs:
           id: meta
           uses: docker/metadata-action@v5
           with:
-            images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/mcmasterful-books-docker
 
         - name: Build and push Docker image
           uses: docker/build-push-action@v5

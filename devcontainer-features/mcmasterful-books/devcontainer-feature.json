@@ -1,7 +1,7 @@
 {
     "name": "mcmasterful-books",
     "id": "mcmasterful-books",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "A feature installing the `mcmasterful-books` server for McMaster's BVD-103 class.",
     "installsAfter": [
         "ghcr.io/devcontainers-contrib/features/tsx"

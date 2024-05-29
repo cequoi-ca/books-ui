@@ -91,7 +91,7 @@ export default function InitialMutableBookList({ createOrUpdateBook, removeBook,
     }
   
     return (<>
-        <form id="add_book_form" class="flex flex-col justify-items-center dark:bg-slate-800 bg-slate-200 p-10 col-start-1 col-span-1 gap-1">
+        <div id="add_book_form" class="flex flex-col justify-items-center dark:bg-slate-800 bg-slate-200 p-10 col-start-1 col-span-1 gap-1">
           <h2>Add Book</h2>
           <label for='name'>Name</label>
           <input class='text-black' name='name' placeholder='Name' value={new_book().name} onInput={(e) => update_new_book(e, "name")}/>
@@ -109,7 +109,7 @@ export default function InitialMutableBookList({ createOrUpdateBook, removeBook,
           <textarea class='text-black' name="description" placeholder='Description' value={new_book().description} onInput={(e) => update_new_book(e, "description")}/>
           
           <button name="add_book" class="bg-green-400 hover:bg-green-700 text-white" onclick={() => submit_new_book()}>Add Book</button>
-        </form>
+        </div>
         <ul class="grid col-start-2 p-10 grid-cols-[auto_1fr_auto_min-content] grid-rows-[repeat(auto-fit,_minmax(10px,_auto)_minmax(10px,_auto)_minmax(10px,_1fr))] gap-y-1 gap-x-3">
           <Key each={books()} by="id">
             { (item, index) => 

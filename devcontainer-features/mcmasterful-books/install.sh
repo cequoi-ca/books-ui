@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+npm install -g tsx
+
 cd /
 
 git clone https://github.com/McMastercce/bvd-103-mcmasterful-books
@@ -14,3 +16,4 @@ npm install
 npm install -g ./
 
 sudo chown -R node:node /bvd-103-mcmasterful-books/
+

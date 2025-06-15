@@ -23,7 +23,8 @@ export async function run_server() {
       strict: false,
       allow: [adapter]
     },
-    host: true
+    host: '0.0.0.0',
+    allowedHosts: ['front-end', 'localhost', '127.0.0.1']
   },
     resolve: {
       alias: {

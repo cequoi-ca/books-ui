@@ -42,37 +42,39 @@ export default function InitialShoppingCart({ lookupBookById, removeFromOrder, c
     });
 
     return (
-        <div class="flex flex-col justify-start items-start col-start-3 gap-5 row-start-4 row-span-2">
-            <h3 class="font-bold">Order</h3>
+        <div class="flex flex-col justify-start items-start col-start-3 gap-5 row-start-4 row-span-2 bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm">
+            <h3 class="font-bold text-xl">Shopping Cart</h3>
             {
                 orderStatus() ? (
                     typeof orderStatus() === 'string' ?
-                    (<span class="text-red-300">{orderStatus()}</span>) :
-                    (<span class="text-green-300">Order Placed</span>)
+                    (<span class="text-red-500 bg-red-50 dark:bg-red-900/20 px-3 py-2 rounded">{orderStatus()}</span>) :
+                    (<span class="text-green-500 bg-green-50 dark:bg-green-900/20 px-3 py-2 rounded">Order Placed Successfully!</span>)
                 ) : ""
             }
-        <ul class="flex flex-col justify-start items-start gap-5">
+        <ul class="flex flex-col justify-start items-start gap-4 w-full">
             <Key each={bookArray()} by="id">
-                { (item, index) => 
-                <li x-book-name={item().name} x-book={item().id ?? index()} class="book flex flex-col gap-2">
-                <h2 x-name="name" class="col-start-2 col-span-1 row-start-1">{item().name}</h2>
-                <h4 x-name="author" class="text-sm col-span-1 col-start-2 row-start-2">by {item().author}</h4>
-                <h3 x-name="order" class="col-span-1 row-start-1 row-span-2 col-start-3 flex flex-row items-center gap-2">
-                    <button class="bg-green-400 hover:bg-green-700 pl-1 pr-1 flex flex-col items-center justify-center" onClick={() => addToOrder(item().id  || "")}>+</button>
-                    {item().order_count}
-                    <button class="bg-red-400 hover:bg-red-700 pl-1 pr-1 flex flex-col items-center justify-center" onClick={() => removeFromOrder(item().id || "")}>-</button>
+                { (item, index) =>
+                <li x-book-name={item().name} x-book={item().id ?? index()} class="book flex flex-col gap-2 w-full p-4 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                <h2 x-name="name" class="font-semibold">{item().name}</h2>
+                <h4 x-name="author" class="text-sm text-gray-600 dark:text-gray-400">by {item().author}</h4>
+                <h3 x-name="order" class="flex flex-row items-center gap-3 mt-2">
+                    <button class="bg-green-500 hover:bg-green-600 px-3 py-1 rounded text-white transition-colors" onClick={() => addToOrder(item().id  || "")}>+</button>
+                    <span class="font-bold text-lg min-w-[2rem] text-center">{item().order_count}</span>
+                    <button class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-white transition-colors" onClick={() => removeFromOrder(item().id || "")}>-</button>
                 </h3>
-                <h3 x-name="price-calc" class="text-xs">
-                    {item().price} * {item().order_count} =
-                </h3>
-                <h3 x-name="price" class="font-bold">
-                    {item().price * item().order_count}
-                </h3>
+                <div class="flex flex-row justify-between items-center mt-2 pt-2 border-t border-gray-200 dark:border-slate-700">
+                    <h3 x-name="price-calc" class="text-sm text-gray-600 dark:text-gray-400">
+                        ${item().price} × {item().order_count}
+                    </h3>
+                    <h3 x-name="price" class="font-bold text-lg">
+                        ${(item().price * item().order_count).toFixed(2)}
+                    </h3>
+                </div>
                 </li>
                 }
             </Key>
         </ul>
-        <button onclick={submitOrder} class="bg-green-400 hover:bg-green-700 p-2">Place Order</button>
-        </div> 
+        <button onclick={submitOrder} class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg w-full font-semibold transition-colors">Place Order</button>
+        </div>
     )
 }

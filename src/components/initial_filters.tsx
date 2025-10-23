@@ -10,15 +10,29 @@ interface Props {
 
 export default function InitialFilters({ filters, setFilters}: Props) {
     return (
-        <div class="flex flex-row justify-center items-center col-start-2 p-10 gap-5">
-          <span>Filters:</span>
-          <For each={filters()}>{(item, index) => <span><input type="checkbox" x-filter-from={item.filter.from} x-filter-to={item.filter.to} checked={item.active} onchange={(event) => {
-            let new_value = event.target.checked;
-            let new_filters = [...filters()];
-            let i = index();
-            new_filters[i] = {...new_filters[i], active: new_value };
-            setFilters(new_filters);
-          }}/><span class="pl-2">{item.label}</span></span>}</For>
+        <div class="flex flex-col col-start-2 p-10 gap-4 bg-white dark:bg-slate-900 rounded-lg">
+          <h3 class="font-semibold text-lg">Filter Price:</h3>
+          <div class="flex flex-col gap-3">
+            <For each={filters()}>{(item, index) =>
+              <label class="flex flex-row items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 p-2 rounded transition-colors">
+                <input
+                  type="checkbox"
+                  x-filter-from={item.filter.from}
+                  x-filter-to={item.filter.to}
+                  checked={item.active}
+                  class="w-5 h-5 cursor-pointer"
+                  onchange={(event) => {
+                    let new_value = event.target.checked;
+                    let new_filters = [...filters()];
+                    let i = index();
+                    new_filters[i] = {...new_filters[i], active: new_value };
+                    setFilters(new_filters);
+                  }}
+                />
+                <span class="text-md">{item.label}</span>
+              </label>
+            }</For>
+          </div>
         </div>
     )
 }

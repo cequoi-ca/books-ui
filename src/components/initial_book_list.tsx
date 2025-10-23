@@ -14,26 +14,32 @@ export default function InitialBookList({ filters, listBooks, addToOrder}: Props
     });
 
     return (
-        
-        <ul class="grid col-start-2 p-10 grid-cols-[auto_1fr_auto] grid-rows-[repeat(auto-fit,_minmax(10px,_auto)_minmax(10px,_auto)_minmax(10px,_1fr))] gap-y-0 gap-x-3 justify-center align-center">
-            <For each={books()}>
-                { (item, index) => 
-                <li x-book-name={item.name} x-book={item.id ?? index} class="book grid grid-cols-subgrid grid-rows-subgrid col-span-3 row-span-3">
-                <div class="col-start-1 row-span-3 w-20 h-32">
-                    <img x-name="image" src={item.image} class="aspect-auto"/>
-                </div>
-                <h2 x-name="name" class="col-start-2 col-span-1 row-start-1">{item.name}</h2>
-                <h3 x-name="price" class="col-span-1 row-start-1 row-span-2 col-start-3 flex flex-row items-center gap-5">
-                    {item.price}
-                    {
-                        addToOrder ? (<button class="bg-green-400 hover:bg-green-700 p-2 flex flex-col items-center justify-center" onClick={() => addToOrder((books() || [])[index()].id || "")}>Add to Cart</button>) : (<></>)
+        <div class="col-start-2 p-10">
+            <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                <For each={books()}>
+                    { (item, index) =>
+                    <li x-book-name={item.name} x-book={item.id ?? index} class="book bg-white dark:bg-slate-700 border-2 border-black dark:border-slate-500 rounded-3xl p-6 w-full max-w-sm flex flex-row gap-4 items-start hover:shadow-lg transition-shadow">
+                        <div class="flex-shrink-0">
+                            <img x-name="image" src={item.image} class="w-24 h-32 object-cover rounded"/>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-grow">
+                            <h4 x-name="author" class="text-sm text-gray-600 dark:text-gray-300">{item.author}</h4>
+                            <h2 x-name="name" class="font-semibold text-lg">{item.name}</h2>
+                            <h3 x-name="price" class="text-md font-bold mt-auto">${item.price}</h3>
+                            {
+                                addToOrder ? (
+                                    <button
+                                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg mt-2 transition-colors"
+                                        onClick={() => addToOrder((books() || [])[index()].id || "")}>
+                                        Add to Cart
+                                    </button>
+                                ) : null
+                            }
+                        </div>
+                    </li>
                     }
-                </h3>
-                <h4 x-name="author" class="col-span-1 col-start-2 row-start-2">by {item.author}</h4>
-                <div x-name="description" class="col-span-2 col-start-2 row-start-3">{item.description}</div>
-                </li>
-                }
-            </For>
-        </ul>
+                </For>
+            </ul>
+        </div>
     )
 }

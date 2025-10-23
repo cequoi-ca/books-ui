@@ -65,9 +65,6 @@ declare module "ecommerce_adapter" {
     // Order Fulfillment
     export function fulfilOrder(orderId: OrderId, booksFulfilled: Array<OrderFulfillment>): Promise<void>;
 
-    // Backward compatibility
-    export const assignment: 'assignment-4';
-
     export default {
         listBooks,
         lookupBookById,
@@ -77,8 +74,7 @@ declare module "ecommerce_adapter" {
         findBookOnShelf,
         orderBooks,
         listOrders,
-        fulfilOrder,
-        assignment
+        fulfilOrder
     }
 }
 

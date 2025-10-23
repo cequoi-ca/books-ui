@@ -1,4 +1,4 @@
-import { Book, BookID, Filter } from "assignment_3";
+import { Book, BookID, Filter } from "ecommerce_adapter";
 import { Accessor, For, Resource, createResource } from "solid-js";
 
 interface Props {

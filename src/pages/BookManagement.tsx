@@ -1,4 +1,4 @@
-import adapter from 'adapter';
+import adapter from 'ecommerce_adapter';
 import PageWrapper from '../components/page_wrapper';
 import InitialMutableBookList from '../components/initial_mutable_book_list';
 

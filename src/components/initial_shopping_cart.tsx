@@ -1,7 +1,6 @@
 import { Key } from "@solid-primitives/keyed";
-import { Book, BookID, Filter } from "assignment_3";
-import { lookupBookById } from "assignment_4";
-import { Accessor, For, Resource, ResourceFetcherInfo, createResource } from "solid-js";
+import { Book, BookID, lookupBookById } from "ecommerce_adapter";
+import { Accessor, ResourceFetcherInfo, createResource } from "solid-js";
 
 interface Props {
     lookupBookById: typeof lookupBookById, 

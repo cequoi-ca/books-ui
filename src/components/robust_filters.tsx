@@ -1,7 +1,7 @@
 
 import { Key } from "@solid-primitives/keyed";
-import { Filter } from "assignment_3";
-import { Accessor, For, Resource, Setter, createResource } from "solid-js";
+import { Filter } from "ecommerce_adapter";
+import { Accessor, createResource } from "solid-js";
 
 interface Props {
     filters: Accessor<Filter[]>,

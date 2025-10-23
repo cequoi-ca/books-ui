@@ -1,6 +1,6 @@
 import { Key } from "@solid-primitives/keyed";
-import { Book, BookID } from "assignment_2";
-import { For, createResource, createSignal } from "solid-js";
+import { Book, BookID } from "ecommerce_adapter";
+import { createResource, createSignal } from "solid-js";
 
 interface Props {
     listBooks: (filters: Array<{from?: number, to?: number}>) => Promise<Book[]>,

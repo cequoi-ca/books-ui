@@ -1,5 +1,5 @@
 
-import { Accessor, For, Resource, Setter, createResource } from "solid-js";
+import { Accessor, For, Setter } from "solid-js";
 
 export type NamedFilters = Array<{ label: string, filter: {from?: number, to?: number}, active: boolean }>;
 

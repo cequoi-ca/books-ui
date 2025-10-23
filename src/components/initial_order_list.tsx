@@ -1,7 +1,5 @@
-import { BookID } from "assignment_2";
-import { Book, Filter, OrderId, ShelfId, findBookOnShelf, fulfilOrder, listOrders, lookupBookById } from "assignment_4";
-import { listBooks, placeBooksOnShelf } from "assignment_4";
-import { Accessor, For, Resource, createResource, createSignal } from "solid-js";
+import { BookID, Book, OrderId, ShelfId, findBookOnShelf, fulfilOrder, listOrders, lookupBookById } from "ecommerce_adapter";
+import { For, createResource, createSignal } from "solid-js";
 
 interface Props {
     lookupBookById: typeof lookupBookById,

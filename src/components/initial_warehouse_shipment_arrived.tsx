@@ -1,6 +1,5 @@
-import { Book, Filter } from "assignment_4";
-import {  listBooks, placeBooksOnShelf } from "assignment_4";
-import { Accessor, For, Resource, createResource, createSignal } from "solid-js";
+import { Filter, listBooks, placeBooksOnShelf } from "ecommerce_adapter";
+import { For, createResource, createSignal } from "solid-js";
 
 interface Props {
     listBooks: typeof listBooks,

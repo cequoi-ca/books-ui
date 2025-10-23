@@ -28,7 +28,8 @@ export async function run_server() {
   },
     resolve: {
       alias: {
-        adapter
+        adapter,
+        ecommerce_adapter: adapter
       }
     }
     });

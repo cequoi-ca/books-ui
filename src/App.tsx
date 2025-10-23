@@ -1,20 +1,24 @@
-import adapter from 'adapter';
-import assignment from './assignment-1';
-import assignment_2 from './assignment-2';
-import assignment_3 from './assignment-3';
-import assignment_4 from './assignment-4';
+import { Route, Router } from '@solidjs/router';
+import Storefront from './pages/Storefront';
+import BookManagement from './pages/BookManagement';
+import Warehouse from './pages/Warehouse';
 
+/**
+ * Main Application Component
+ * Unified ecommerce bookstore with three main pages:
+ * - Storefront: Customer-facing shopping experience
+ * - Book Management: Admin CRUD operations for catalog
+ * - Warehouse: Inventory management and order fulfillment
+ */
 function App() {
-  if (adapter.assignment == "assignment-1") {
-    return assignment(adapter);
-  } else if (adapter.assignment == "assignment-2") {
-    return assignment_2(adapter);
-  } else if (adapter.assignment == "assignment-3") {
-    return assignment_3(adapter);
-  } else if (adapter.assignment == "assignment-4") {
-    return assignment_4(adapter);
-  }
+  return (
+    <Router>
+      <Route path="/" component={Storefront} />
+      <Route path="/manage" component={BookManagement} />
+      <Route path="/warehouse" component={Warehouse} />
+    </Router>
+  );
 }
 
-export default App
+export default App;
 

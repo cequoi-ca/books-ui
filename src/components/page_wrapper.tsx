@@ -1,4 +1,3 @@
-import adapter from 'adapter';
 import { JSXElement } from 'solid-js';
 
 interface Props {
@@ -8,7 +7,6 @@ interface Props {
 }
 
 export default function PageWrapper(props: Props) {
-    let assignment : string = adapter.assignment;
     let title : string = props.title ?? "";
     let routes : Record<string, string>= props.routes ?? {};
 
@@ -19,11 +17,10 @@ export default function PageWrapper(props: Props) {
 
     return (
         <div class="grid grid-cols-[1fr_minmax(900px,_3fr)_1fr] grid-rows-[auto_auto_auto_min-content_min-content_1fr_auto] min-h-[100dvh] bg-gray-50 dark:bg-slate-800">
-          <header class="grid justify-items-center row-start-1 col-span-3 dark:bg-slate-900 bg-white p-10 grid-cols-subgrid items-center row-span-3 gap-y-2 border-b-2 border-gray-200 dark:border-slate-700">
-            <h2 class="text-sm col-start-2 text-gray-500 dark:text-gray-400">{assignment}</h2>
-            <h1 class="text-4xl font-bold col-start-2 row-start-2 tracking-wider">BOOKS</h1>
-            <h2 class="text-lg col-start-2 row-start-3 text-gray-600 dark:text-gray-300">{title}</h2>
-            <div class="flex flex-col col-start-1 row-start-1 row-span-3 gap-2">
+          <header class="grid justify-items-center row-start-1 col-span-3 dark:bg-slate-900 bg-white p-10 grid-cols-subgrid items-center row-span-2 gap-y-2 border-b-2 border-gray-200 dark:border-slate-700">
+            <h1 class="text-4xl font-bold col-start-2 row-start-1 tracking-wider">BOOKS</h1>
+            <h2 class="text-lg col-start-2 row-start-2 text-gray-600 dark:text-gray-300">{title}</h2>
+            <div class="flex flex-col col-start-1 row-start-1 row-span-2 gap-2">
                 {route_elements}
             </div>
           </header>

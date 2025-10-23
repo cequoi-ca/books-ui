@@ -1,151 +1,109 @@
-declare module "assignment_1" {
+/**
+ * Unified Ecommerce Adapter Type Definitions
+ * Consolidates all functionality from assignments 1-4 into a single cohesive API
+ */
+
+declare module "ecommerce_adapter" {
+    // Base Types
+    export type BookID = string;
+    export type ShelfId = string;
+    export type OrderId = string;
+
+    // Book entity
     export interface Book {
-        name: string,
-        author: string,
-        description: string,
-        price: number,
-        image: string,
-    };
+        id?: BookID;
+        name: string;
+        author: string;
+        description: string;
+        price: number;
+        image: string;
+    }
 
-    export function listBooks(filters?: Array<{ from?: number, to?: number }>): Promise<Book[]>;
+    // Filter criteria
+    export interface Filter {
+        from?: number;
+        to?: number;
+        name?: string;
+        author?: string;
+    }
 
-    export const assignment = "assignment-1";
+    // Warehouse shelf location
+    export interface ShelfLocation {
+        shelf: ShelfId;
+        count: number;
+    }
+
+    // Customer order
+    export interface Order {
+        orderId: OrderId;
+        books: Record<BookID, number>;
+    }
+
+    // Order fulfillment details
+    export interface OrderFulfillment {
+        book: BookID;
+        shelf: ShelfId;
+        numberOfBooks: number;
+    }
+
+    // Catalog Management
+    export function listBooks(filters?: Array<Filter>): Promise<Book[]>;
+    export function lookupBookById(bookId: BookID): Promise<Book>;
+
+    // Book CRUD (Admin)
+    export function createOrUpdateBook(book: Book): Promise<BookID>;
+    export function removeBook(bookId: BookID): Promise<void>;
+
+    // Inventory Management (Warehouse)
+    export function placeBooksOnShelf(bookId: BookID, numberOfBooks: number, shelf: ShelfId): Promise<void>;
+    export function findBookOnShelf(bookId: BookID): Promise<Array<ShelfLocation>>;
+
+    // Customer Orders
+    export function orderBooks(order: BookID[]): Promise<{ orderId: OrderId }>;
+    export function listOrders(): Promise<Array<Order>>;
+
+    // Order Fulfillment
+    export function fulfilOrder(orderId: OrderId, booksFulfilled: Array<OrderFulfillment>): Promise<void>;
+
+    // Backward compatibility
+    export const assignment: 'assignment-4';
 
     export default {
         listBooks,
+        lookupBookById,
+        createOrUpdateBook,
+        removeBook,
+        placeBooksOnShelf,
+        findBookOnShelf,
+        orderBooks,
+        listOrders,
+        fulfilOrder,
         assignment
     }
+}
+
+// Legacy assignments for backward compatibility during migration
+declare module "assignment_1" {
+    import ecommerceAdapter from "ecommerce_adapter";
+    export default ecommerceAdapter;
 }
 
 declare module "assignment_2" {
-    export type BookID = string;
-
-    export interface Book {
-        id?: BookID,
-        name: string,
-        author: string,
-        description: string,
-        price: number,
-        image: string,
-    };
-
-    export function listBooks(filters?: Array<{ from?: number, to?: number }>): Promise<Book[]>;
-
-    export function createOrUpdateBook(book: Book): Promise<BookID>;
-
-    export function removeBook(book: BookID): Promise<void>;
-
-    export const assignment = "assignment-2";
-
-    export default {
-        listBooks,
-        createOrUpdateBook,
-        removeBook,
-        assignment
-    }
+    import ecommerceAdapter from "ecommerce_adapter";
+    export default ecommerceAdapter;
 }
 
 declare module "assignment_3" {
-    export type BookID = string;
-
-    export interface Book {
-        id?: BookID,
-        name: string,
-        author: string,
-        description: string,
-        price: number,
-        image: string,
-    };
-
-    export interface Filter {
-        from?: number,
-        to?: number,
-        name?: string,
-        author?: string,
-    };
-
-    export function listBooks(filters?: Array<Filter>): Promise<Book[]>;
-
-    export function createOrUpdateBook(book: Book): Promise<BookID>;
-
-    export function removeBook(book: BookID): Promise<void>;
-
-    export const assignment = "assignment-3";
-
-    export default {
-        listBooks,
-        createOrUpdateBook,
-        removeBook,
-        assignment
-    }
+    import ecommerceAdapter from "ecommerce_adapter";
+    export default ecommerceAdapter;
 }
 
 declare module "assignment_4" {
-    export type BookID = string;
-
-    export interface Book {
-        id?: BookID,
-        name: string,
-        author: string,
-        description: string,
-        price: number,
-        image: string,
-    };
-
-    export interface Filter {
-        from?: number,
-        to?: number,
-        name?: string,
-        author?: string,
-    };
-
-    export function listBooks(filters?: Array<Filter>): Promise<Book[]>;
-
-    export function createOrUpdateBook(book: Book): Promise<BookID>;
-
-    export function removeBook(book: BookID): Promise<void>;
-
-    export function lookupBookById(book: BookID): Promise<Book>;
-
-    export type ShelfId = string
-    export type OrderId = string
-
-    export function placeBooksOnShelf(bookId: BookID, numberOfBooks: number, shelf: ShelfId): Promise<void>;
-
-    export function orderBooks(order: BookID[]): Promise<{ orderId: OrderId } | { missingBooks: Array<{ book: BookID, numberAvailable: number, numberRequested: number }> }>;
-
-    export function findBookOnShelf(book: BookID):  Promise<Array<{ shelf: ShelfId, count: number }>> ;
-
-    export function fulfilOrder(order: OrderId, booksFulfilled: Array<{ book: BookID, shelf: ShelfId, numberOfBooks: number }>): Promise<void>;
-
-    export function listOrders(): Promise<Array<{ orderId: OrderId, books: Record<BookID, number> }>>;
-
-    export const assignment = "assignment-4";
-
-    export default {
-        listBooks,
-        createOrUpdateBook,
-        removeBook,
-        assignment,
-        placeBooksOnShelf,
-        bookAvailability,
-        orderBooks,
-        findBookOnShelf,
-        fulfilOrder,
-        listOrders,
-        lookupBookById
-    }
+    import ecommerceAdapter from "ecommerce_adapter";
+    export default ecommerceAdapter;
 }
 
 declare module "adapter" {
-    import assignment_1 from "assignment_1";
-    import assignment_2 from "assignment_2";
-    import assignment_3 from "assignment_3";
-    import assignment_4 from "assignment_4";
-
-    type default_export = assignment_1 | assignment_2 | assignment_3 | assignment_4;
-
-    const ex: default_export;
-
-    export default ex;
+    import ecommerceAdapter from "ecommerce_adapter";
+    export default ecommerceAdapter;
 }

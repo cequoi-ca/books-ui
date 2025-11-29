@@ -2,18 +2,12 @@
 set -e
 
 npm install -g tsx
-
 cd /
+REPO=books-ui
+git clone "https://github.com/cequoi-ca/$REPO"
 
-git clone https://github.com/McMastercce/bvd-103-mcmasterful-books
-
-sudo chown -R node:node /bvd-103-mcmasterful-books/
-
-cd /bvd-103-mcmasterful-books
-
+sudo chown -R node:node "/$REPO/"
+cd "/$REPO"
 npm install
-
 npm install -g ./
-
-sudo chown -R node:node /bvd-103-mcmasterful-books/
-
+sudo chown -R node:node "/${REPO}/"

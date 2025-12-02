@@ -103,7 +103,7 @@ export default function InitialMutableBookList({ createOrUpdateBook, removeBook,
           <input class='text-black px-2 py-1 rounded border border-gray-300 dark:border-slate-500 w-full' name='image' placeholder='Image URL' value={new_book().image} onInput={(e) => update_new_book(e, "image")}/>
 
           <label for='price' class="font-medium">Price</label>
-          <input class='text-black px-2 py-1 rounded border border-gray-300 dark:border-slate-500 w-full' name='price' type="number" placeholder='0.0' value={new_book().price} onInput={(e) => update_new_book(e, "price")}/>
+          <input class='text-black px-2 py-1 rounded border border-gray-300 dark:border-slate-500 w-full' name='price' type="text" placeholder='0.0' value={new_book().price} onInput={(e) => update_new_book(e, "price")}/>
 
           <label for='description' class="font-medium">Description</label>
           <textarea class='text-black px-2 py-1 rounded border border-gray-300 dark:border-slate-500 min-h-20 w-full' name="description" placeholder='Description' value={new_book().description} onInput={(e) => update_new_book(e, "description")}/>
@@ -144,7 +144,7 @@ export default function InitialMutableBookList({ createOrUpdateBook, removeBook,
                 {/* Price */}
                 <div class="flex flex-col">
                   <label class="text-sm text-white mb-1">Price</label>
-                  <input x-name="price" class="text-black px-3 py-2 rounded border-none w-full bg-pink-200 placeholder-gray-500" placeholder="0.0" value={item().price} type="number" onInput={(e) => update_existing_book(e, "price", index())}/>
+                  <input x-name="price" class="text-black px-3 py-2 rounded border-none w-full bg-pink-200 placeholder-gray-500" placeholder="0.0" value={item().price} type="text" onInput={(e) => update_existing_book(e, "price", index())}/>
                 </div>
 
                 {/* Image URL - moved below Description */}
